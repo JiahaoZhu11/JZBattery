@@ -22,7 +22,7 @@ pod 'JZBattery'
 
 ## Author
 
-朱嘉皓, jiahao.zhu@maibaapp.cn
+朱嘉皓, jiahao.zhu98@outlook.com
 
 ## License
 
