@@ -1,5 +1,5 @@
 PODS:
-  - JZBattery (0.1.0)
+  - JZBattery (1.0.0)
 
 DEPENDENCIES:
   - JZBattery (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JZBattery: a26306ad9154cf0614e5cb3215253fbf5385d943
+  JZBattery: c490b7f03a9c8a6e21487206fef34646f44e6265
 
 PODFILE CHECKSUM: 752c2057b46a8d8136c1f99cc7ff61f47c058d2f
 

@@ -1,22 +1,24 @@
 {
   "name": "JZBattery",
-  "version": "0.1.0",
-  "summary": "A short description of JZBattery.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/朱嘉皓/JZBattery",
+  "version": "1.0.0",
+  "summary": "Creating decent battery view that can be used in customized status bar.",
+  "description": "JZBattery provides a decent battery view that can be used in customized status bar.",
+  "homepage": "https://github.com/JiahaoZhu11/JZBattery",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "朱嘉皓": "jiahao.zhu@maibaapp.cn"
+    "朱嘉皓": "jiahao_zhu98@outlook.com"
   },
   "source": {
-    "git": "https://github.com/朱嘉皓/JZBattery.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/JiahaoZhu11/JZBattery.git",
+    "tag": "1.0.0"
   },
+  "swift_versions": "4.0",
   "platforms": {
-    "ios": "9.0"
+    "ios": "10.0"
   },
-  "source_files": "JZBattery/Classes/**/*"
+  "source_files": "JZBattery/Classes/**/*",
+  "swift_version": "4.0"
 }
