@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import JZBattery
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let battery = JZBatteryView()
+        battery.frame.size = CGSize(width: 100, height: 100)
+        battery.center = view.center
+        view.addSubview(battery)
     }
 
     override func didReceiveMemoryWarning() {
