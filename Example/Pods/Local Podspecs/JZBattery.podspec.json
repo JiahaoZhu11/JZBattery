@@ -1,0 +1,22 @@
+{
+  "name": "JZBattery",
+  "version": "0.1.0",
+  "summary": "A short description of JZBattery.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/朱嘉皓/JZBattery",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "朱嘉皓": "jiahao.zhu@maibaapp.cn"
+  },
+  "source": {
+    "git": "https://github.com/朱嘉皓/JZBattery.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "JZBattery/Classes/**/*"
+}

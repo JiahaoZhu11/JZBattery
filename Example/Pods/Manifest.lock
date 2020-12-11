@@ -1,0 +1,16 @@
+PODS:
+  - JZBattery (0.1.0)
+
+DEPENDENCIES:
+  - JZBattery (from `../`)
+
+EXTERNAL SOURCES:
+  JZBattery:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JZBattery: a26306ad9154cf0614e5cb3215253fbf5385d943
+
+PODFILE CHECKSUM: 752c2057b46a8d8136c1f99cc7ff61f47c058d2f
+
+COCOAPODS: 1.10.0
