@@ -1,6 +1,6 @@
 //
 //  JZBattery.swift
-//  JZVideoPlayer
+//  JZBattery
 //
 //  Created by Jiahao Zhu on 2020/12/11.
 //
