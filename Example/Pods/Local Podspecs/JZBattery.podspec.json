@@ -19,6 +19,6 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "JZBattery/Classes/**/*",
+  "source_files": "JZBattery/Classes/*",
   "swift_version": "4.0"
 }
