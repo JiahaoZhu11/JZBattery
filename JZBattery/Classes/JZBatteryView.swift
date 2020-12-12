@@ -7,6 +7,10 @@
 
 import UIKit
 
+fileprivate let standardWidth: CGFloat = 25
+
+@IBDesignable
+
 public class JZBatteryView: UIView {
     
     /// 电池状态改变回调
@@ -29,9 +33,15 @@ public class JZBatteryView: UIView {
         }
     }
     
+    /// 宽高比
+    public var widthToHeightRatio: CGFloat = 2.5 {
+        didSet {
+            drawBattery()
+        }
+    }
+    
     private lazy var batteryBodyLayer: CAShapeLayer = {
         let layer = CAShapeLayer(layer: self.layer)
-        layer.lineWidth = 1
         layer.strokeColor = UIColor.white.cgColor
         layer.fillColor = UIColor.clear.cgColor
         return layer
@@ -39,7 +49,6 @@ public class JZBatteryView: UIView {
     
     private lazy var batteryNodeLayer: CAShapeLayer = {
         let layer = CAShapeLayer(layer: self.layer)
-        layer.lineWidth = 2
         layer.strokeColor = UIColor.white.cgColor
         layer.fillColor = UIColor.clear.cgColor
         return layer
@@ -47,8 +56,7 @@ public class JZBatteryView: UIView {
     
     private lazy var batteryFillingView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 2
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -64,18 +72,7 @@ public class JZBatteryView: UIView {
         return batteryState
     }() {
         didSet {
-            switch batteryState {
-            case .charging, .full:
-                batteryFillingView.backgroundColor = .green
-            case .unplugged:
-                if batteryLevel < 0.2 {
-                    batteryFillingView.backgroundColor = .red
-                } else {
-                    batteryFillingView.backgroundColor = .white
-                }
-            default:
-                batteryFillingView.backgroundColor = .white
-            }
+            updateBatteryStatus()
         }
     }
     
@@ -86,6 +83,7 @@ public class JZBatteryView: UIView {
     }() {
         didSet {
             batteryFillingView.frame.size.width = (width - 2) * CGFloat(batteryLevel)
+            updateBatteryStatus()
         }
     }
     
@@ -93,7 +91,6 @@ public class JZBatteryView: UIView {
         super.init(frame: frame)
         
         initBatteryStatus()
-
     }
     
     required init?(coder: NSCoder) {
@@ -113,22 +110,26 @@ public class JZBatteryView: UIView {
     }
     
     private func drawBattery() {
-        width = frame.width - 5
-        height = min(frame.height - 2, width / 2)
-        origin = CGPoint(x: 1, y: (frame.height - height) / 2)
+        width = frame.width - 6
+        height = min(frame.height - 2, width / widthToHeightRatio)
+        let scale = width / standardWidth
+        origin = CGPoint(x: 2, y: (frame.height - height) / 2)
         
         /// 电池左侧
-        let leftPath = UIBezierPath(roundedRect: CGRect(x: origin.x, y: origin.y, width: width, height: height), cornerRadius: 2)
+        let leftPath = UIBezierPath(roundedRect: CGRect(x: origin.x, y: origin.y, width: width, height: height), cornerRadius: 2 * scale)
+        batteryBodyLayer.lineWidth = scale
         batteryBodyLayer.path = leftPath.cgPath
         
         // 电池右侧
         let rightPath = UIBezierPath()
-        rightPath.move(to: CGPoint(x: origin.x + width + 1, y: origin.y + height / 3))
-        rightPath.addLine(to: CGPoint(x: origin.x + width + 1, y: origin.y + 2 * height / 3))
+        rightPath.move(to: CGPoint(x: origin.x + width + scale, y: origin.y + height / 3))
+        rightPath.addLine(to: CGPoint(x: origin.x + width + scale, y: origin.y + 2 * height / 3))
+        batteryNodeLayer.lineWidth = 2 * scale
         batteryNodeLayer.path = rightPath.cgPath
         
         // 电池填充
-        batteryFillingView.frame = CGRect(x: origin.x + 1, y: origin.y + 1, width: (width - 2) * CGFloat(batteryLevel), height: height - 2)
+        batteryFillingView.frame = CGRect(x: origin.x + scale, y: origin.y + scale, width: (width - 2 * scale) * CGFloat(batteryLevel), height: height - 2 * scale)
+        batteryFillingView.layer.cornerRadius = scale
     }
     
     private func initBatteryStatus() {
@@ -142,6 +143,21 @@ public class JZBatteryView: UIView {
     private func observeBatteryStatus() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateBatteryLevel), name: NSNotification.Name.UIDeviceBatteryStateDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateBatteryState), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: nil)
+    }
+    
+    private func updateBatteryStatus() {
+        switch batteryState {
+        case .charging, .full:
+            batteryFillingView.backgroundColor = .green
+        case .unplugged:
+            if batteryLevel < 0.2 {
+                batteryFillingView.backgroundColor = .red
+            } else {
+                batteryFillingView.backgroundColor = .white
+            }
+        default:
+            batteryFillingView.backgroundColor = .clear
+        }
     }
     
     @objc private func updateBatteryState() {
