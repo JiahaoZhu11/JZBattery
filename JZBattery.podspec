@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JZBattery'
-  s.version          = '1.2.0'
+  s.version          = '1.2.1'
   s.summary          = 'Creating decent battery view that can be used in customized status bar.'
 
 # This description is used to generate tags and improve search results.
