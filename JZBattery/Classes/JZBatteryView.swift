@@ -163,8 +163,8 @@ public class JZBatteryView: UIView {
     }
     
     private func observeBatteryStatus() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBatteryLevel), name: NSNotification.Name.UIDeviceBatteryStateDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBatteryState), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBatteryState), name: NSNotification.Name.UIDeviceBatteryStateDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBatteryLevel), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: nil)
     }
     
     private func updateBatteryStatus() {
